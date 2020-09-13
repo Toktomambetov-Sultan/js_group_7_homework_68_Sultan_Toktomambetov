@@ -1,4 +1,4 @@
-import axios from "../axios-api";
+
 import {
   ADD,
   DECREMENT,
@@ -8,6 +8,7 @@ import {
   INCREMENT,
   SUBTRACT
 } from "./actionTypes";
+import axiosApi from "../../../axiosApi";
 
 export const incrementCounter = () => {
   return {type: INCREMENT};
@@ -36,7 +37,7 @@ export const fetchCounter = () => {
   return async dispatch => {
     dispatch(fetchCounterRequest());
     try {
-      const response = await axios.get("/counter.json");
+      const response = await axiosApi.get("/counter.json");
       dispatch(fetchCounterSuccess(response.data));
     } catch(e) {
       dispatch(fetchCounterError(e));

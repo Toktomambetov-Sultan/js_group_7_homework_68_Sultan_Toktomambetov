@@ -1,10 +1,18 @@
-import React, {useEffect} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import "./Counter.css";
-import {addCounter, decrementCounter, fetchCounter, incrementCounter, subtractCounter} from "../../store/actions";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  addCounter,
+  decrementCounter,
+  fetchCounter,
+  incrementCounter,
+  subtractCounter,
+} from "./store/actions";
+import withStore from "../../hocs/withStore.js/withStore";
+import reducer from "./store/reducer";
 
 const Counter = () => {
-  const counter = useSelector(state => state.counter);
+  const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
   const incrementCounterHandler = () => dispatch(incrementCounter());
@@ -27,4 +35,4 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+export default withStore(Counter, reducer);
