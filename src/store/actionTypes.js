@@ -1,0 +1,8 @@
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";
+export const ADD = "ADD";
+export const SUBTRACT = "SUBTRACT";
+
+export const FETCH_COUNTER_REQUEST = "FETCH_COUNTER_REQUEST";
+export const FETCH_COUNTER_SUCCESS = "FETCH_COUNTER_SUCCESS";
+export const FETCH_COUNTER_ERROR = "FETCH_COUNTER_ERROR";
