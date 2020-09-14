@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import TodoApp from "../TodoApp/TodoApp";
 
+
 function App() {
   return (
     <BrowserRouter>

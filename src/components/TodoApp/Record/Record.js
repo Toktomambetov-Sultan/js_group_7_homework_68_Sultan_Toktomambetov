@@ -15,14 +15,14 @@ export default function Record(props) {
         />
         {props.isDone ? (
           <div className="ans isDone">
-            <i className="fas fa-check"></i>
+            <i className="fas fa-check" />
           </div>
         ) : (
-          <div className="ans isNotDone"></div>
+          <div className="ans isNotDone" />
         )}
       </label>
       <button className="deleteBtn" onClick={props.deleteRecord}>
-        <i className="fas fa-trash-alt"></i>
+        <i className="fas fa-trash-alt" />
       </button>
     </div>
   );

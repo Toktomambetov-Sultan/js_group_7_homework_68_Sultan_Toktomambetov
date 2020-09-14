@@ -1,62 +1,47 @@
 import {
-  ADD,
-  DECREMENT,
-  FETCH_COUNTER_ERROR,
-  FETCH_COUNTER_REQUEST,
-  FETCH_COUNTER_SUCCESS,
-  INCREMENT,
-  SUBTRACT,
-  FETCH_COUNTER_INIT,
+  CHANGE_VALUE,
+  FETCH_ERROR,
+  FETCH_SUCCESS,
+  INIT_RECORDS,
+  FETCH_REQUEST
 } from "./actionTypes";
 import axiosApi from "../../../axiosApi";
 
-export const incrementCounter = () => {
-  return { type: INCREMENT };
+export const changeValue = (value) => {
+  return { type: CHANGE_VALUE, value };
 };
-export const decrementCounter = () => {
-  return { type: DECREMENT };
+const fetchRequest = () => {
+  return { type: FETCH_REQUEST };
 };
-export const addCounter = (value) => {
-  return { type: ADD, value };
+const fetchSuccess = () => {
+  return { type: FETCH_SUCCESS };
 };
-export const subtractCounter = (value) => {
-  return { type: SUBTRACT, value };
+export const initRecords = (records) => {
+  return { type: INIT_RECORDS, records };
 };
-
-const fetchCounterRequest = () => {
-  return { type: FETCH_COUNTER_REQUEST };
+const fetchError = (error) => {
+  return { type: FETCH_ERROR, error };
 };
-const fetchCounterInit = (value) => {
-  return { type: FETCH_COUNTER_INIT, value };
-};
-const fetchCounterSuccess = () => {
-  return { type: FETCH_COUNTER_SUCCESS };
-};
-const fetchCounterError = (error) => {
-  return { type: FETCH_COUNTER_ERROR, error };
-};
-
-export const fetchCounter = () => {
+export const fetchGetRecords = () => {
   return async (dispatch) => {
-    dispatch(fetchCounterRequest());
+    dispatch(fetchRequest());
     try {
-      const response = await axiosApi.get("/counter.json");
-      dispatch(fetchCounterInit(response.data));
-      dispatch(fetchCounterSuccess());
+      const response = await axiosApi.get("/records.json");
+      dispatch(initRecords(response.data));
+      dispatch(fetchSuccess());
     } catch (e) {
-      dispatch(fetchCounterError(e));
+      dispatch(fetchError(e));
     }
   };
 };
-
-export const fetchCounterPut = (counter) => {
+export const fetchPut = (records) => {
   return async (dispatch) => {
-    dispatch(fetchCounterRequest());
+    dispatch(fetchRequest());
     try {
-      await axiosApi.put(".json", {counter});
-      dispatch(fetchCounterSuccess());
+      await axiosApi.put("/records.json", { records });
+      dispatch(fetchSuccess());
     } catch (e) {
-      dispatch(fetchCounterError(e));
+      dispatch(fetchError(e));
     }
   };
 };
