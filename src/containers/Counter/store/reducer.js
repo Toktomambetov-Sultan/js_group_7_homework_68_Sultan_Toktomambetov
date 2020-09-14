@@ -6,6 +6,7 @@ import {
   FETCH_COUNTER_SUCCESS,
   INCREMENT,
   SUBTRACT,
+  FETCH_COUNTER_INIT,
 } from "./actionTypes";
 
 const initialState = {
@@ -26,8 +27,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, counter: state.counter - action.value };
     case FETCH_COUNTER_REQUEST:
       return { ...state, loading: true };
+    case FETCH_COUNTER_INIT:
+      return { ...state, counter: action.value };
     case FETCH_COUNTER_SUCCESS:
-      return { ...state, loading: false, counter: action.value };
+      return { ...state, loading: false };
     case FETCH_COUNTER_ERROR:
       return { ...state, loading: false, error: action.error };
     default:
