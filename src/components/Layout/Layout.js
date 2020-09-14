@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import LayoutLink from "./LayoutLink/LayoutLink";
 const useStyles = makeStyles({
   header: {
     padding: "10px 0",
@@ -28,16 +28,8 @@ const Layout = ({ children }) => {
       <header className={classes.header}>
         <Container>
           <ul className={classes.ul}>
-            <li>
-              <NavLink to="/counter" className={classes.link} exact>
-                Counter
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/todoApp" className={classes.link} exact>
-                Todo app
-              </NavLink>
-            </li>
+            <LayoutLink to="/counter">Counter</LayoutLink>
+            <LayoutLink to="/todoApp">Todo app</LayoutLink>
           </ul>
         </Container>
       </header>

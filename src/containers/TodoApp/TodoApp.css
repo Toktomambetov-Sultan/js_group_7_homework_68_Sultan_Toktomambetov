@@ -1,0 +1,103 @@
+.container {
+    display: block;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.form {
+    background-color: #cccc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input {
+    display: inline-block;
+    width: 300px;
+    font-size: 20px;
+    height: 30px;
+}
+
+.addBtn {
+    border: 2px solid rgb(17, 0, 255);
+    background-color: rgba(0, 255, 200, 0.8);
+    border-radius: 5px;
+    width: 100px;
+    font-size: 20px;
+    padding: 5px 0;
+    margin: 0 0 0 30px;
+}
+
+.addBtn:focus,
+.addBtn:active {
+    outline: none;
+}
+
+.record {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: rgb(0, 109, 172);
+    padding: 10px 20px 5px 10px;
+    border-bottom: 10px solid #000;
+    margin: 5px 0;
+}
+
+.deleteBtn {
+    display: inline-block;
+    font-size: 40px;
+    color: rgb(255, 0, 0);
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid rgba(0, 81, 255, 0.52);
+    background: radial-gradient(ellipse at center, rgba(5, 5, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.deleteBtn:focus,
+.deleteBtn:active {
+    outline: none;
+}
+
+.todo {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.todo.active {
+    color: rgb(0, 255, 0);
+}
+
+.checkbox {
+    display: none;
+}
+
+.ans {
+    width: 60px;
+    height: 100%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(204, 204, 204, 0.26);
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    border-radius: 50%;
+}
+
+.isDone {
+    color: rgb(0, 255, 0);
+}
+
+.label {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.isNotDone {
+    color: red;
+}
