@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import withStore from "../../hocs/withStore.js/withStore";
 import "./TodoApp.css";
 import "./fontawesome-free-5.14.0-web/css/all.css";
@@ -6,7 +6,12 @@ import AppForm from "../../components/TodoApp/AppForm/AppForm";
 import Record from "../../components/TodoApp/Record/Record";
 import reducer from "./store/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { changeValue, initRecords } from "./store/actions";
+import {
+  changeValue,
+  initRecords,
+  fetchPut,
+  fetchInitRecords,
+} from "./store/actions";
 
 function TodoApp() {
   const dispatch = useDispatch();
@@ -15,7 +20,10 @@ function TodoApp() {
     dispatch(changeValue(event.target.value));
   };
   const addRecord = () => {
-    if (state.value) {
+    if (
+      state.value &&
+      !(state.records.map(elem=>elem.message).indexOf(state.value)+1)
+    ) {
       const recordsCopy = [...state.records];
       recordsCopy.unshift({
         message: state.value,
@@ -25,6 +33,12 @@ function TodoApp() {
       dispatch(initRecords(recordsCopy));
     }
   };
+  useEffect(() => {
+    dispatch(fetchInitRecords());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchPut(state.records));
+  }, [state.records, dispatch]);
   const changeCheck = (event, id) => {
     const index = state.records.findIndex((record) => record.id === id);
     const recordsCopy = [...state.records];
@@ -39,10 +53,9 @@ function TodoApp() {
     recordsCopy.splice(index, 1);
     dispatch(initRecords(recordsCopy));
   };
-
   return (
     <div>
-      <AppForm onHeaderClick={addRecord} changeValue={changeValueHandler} />
+      <AppForm onSubmit={addRecord} changeValue={changeValueHandler} />
       <div className="container">
         {state.records.map((record) => (
           <Record

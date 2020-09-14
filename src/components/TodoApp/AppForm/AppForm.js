@@ -3,7 +3,13 @@ import { useSelector } from "react-redux";
 export default function AppForm(props) {
   const state = useSelector((state) => state);
   return (
-    <div className="form">
+    <form
+      className="form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        props.onSubmit();
+      }}
+    >
       <div className="container">
         <input
           className="input"
@@ -11,10 +17,8 @@ export default function AppForm(props) {
           onChange={props.changeValue}
           value={state.value}
         />
-        <button className="addBtn" onClick={props.onHeaderClick}>
-          add
-        </button>
+        <button className="addBtn">add</button>
       </div>
-    </div>
+    </form>
   );
 }
